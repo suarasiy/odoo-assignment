@@ -10,11 +10,14 @@
                 <field name="produk" decoration-bf="1" decoration-danger="tersedia==False" />
                 <field name="kategori_produk_id" decoration-info="1" />
                 <field name="foto" widget="image" width="75" height="75" />
+                <field name="harga" />
                 <field name="stok" />
                 <field name="warna" widget="color" />
+                <field name="target_penjualan" invisible="1" />
+                <field name="ukuran" widget="badge" />
                 <field name="tersedia" />
                 <field name="barcode" widget="badge" />
-                <field name="terjual" widget="progressbar" options="{'max_value': 'stok'}" />
+                <field name="terjual" widget="progressbar" options="{'max_value': 'target_penjualan'}" />
             </tree>
         </field>
     </record>
@@ -26,13 +29,16 @@
         <field name="arch" type="xml">
             <form string="">
                 <sheet>
-                    <group>
+                    <group string="Produk Info">
                         <!-- Add your fields here -->
                         <field name="produk" />
                         <field name="kategori_produk_id" />
                         <field name="foto" widget="image" width="75" height="75" />
+                        <field name="harga" />
                         <field name="stok" />
+                        <field name="target_penjualan" />
                         <field name="warna" widget="color" />
+                        <field name="ukuran" widget="selection" />
                         <field name="tersedia" widget="boolean_toggle" />
                         <field name="barcode" />
                     </group>

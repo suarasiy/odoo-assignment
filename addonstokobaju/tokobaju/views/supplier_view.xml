@@ -21,7 +21,7 @@
         <field name="arch" type="xml">
             <form string="Supplier">
                 <sheet>
-                    <group>
+                    <group string="Supplier Info">
                         <field name="name" />
                         <field name="alamat" />
                         <field name="no_telp" />
@@ -34,7 +34,7 @@
 
     <!-- tokobaju.supplier action window -->
     <record id="tokobaju_supplier_action" model="ir.actions.act_window">
-        <field name="name">tokobaju.supplier.action</field>
+        <field name="name">Supplier</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">tokobaju.supplier</field>
         <field name="view_mode">tree,form</field>

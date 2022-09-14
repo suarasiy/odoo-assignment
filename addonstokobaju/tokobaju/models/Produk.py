@@ -12,9 +12,15 @@ class Produk(models.Model):
         comodel_name='tokobaju.produk_kategori', string='Kategori')
     foto = fields.Image('foto', max_width=800, max_height=800)
     warna = fields.Char(string='Warna')
+    ukuran = fields.Selection(string='Ukuran', selection=[('xs', 'XS'), ('s', 'S'), (
+        'm', 'M'), ('l', 'L'), ('xl', 'XL'), ('xxl', 'XXL'), ('xxxl', 'XXXL'), ('xxxxl', 'XXXXL')], required=True)
+
     stok = fields.Integer(string='Stok')
     barcode = fields.Char(string='Barcode')
+    harga = fields.Integer(string='Harga', required=True, default=0)
     tersedia = fields.Boolean(string='Tersedia', default=True)
+    target_penjualan = fields.Integer(string='Target Penjualan', default=0)
+
     terjual = fields.Integer(
         string='Terjual', compute="_compute_terjual", readonly=True)
     transaksi_ids = fields.One2many(
@@ -22,12 +28,9 @@ class Produk(models.Model):
 
     @api.depends('transaksi_ids')
     def _compute_terjual(self):
-        for produk in self:
-            for rec in self.transaksi_ids:
-                if produk.id == rec.produk_id.id:
-                    produk.terjual += rec.qty
-                else:
-                    produk.terjual = 0
+        for rec in self:
+            rec.terjual = sum(self.env['tokobaju.transaksi_detail'].search(
+                [('produk_id', '=', rec.id)]).mapped('qty'))
 
 
 class ProdukKategori(models.Model):
