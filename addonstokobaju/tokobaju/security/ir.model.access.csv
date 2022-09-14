@@ -1,2 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_tokobaju_tokobaju,tokobaju.tokobaju,model_tokobaju_tokobaju,base.group_user,1,1,1,1
+access_tokobaju_produk,access.tokobaju.produk,model_tokobaju_produk,,1,1,1,1
+access_tokobaju_produk_kategori,access.tokobaju.produk_kategori,model_tokobaju_produk_kategori,,1,1,1,1
+access_tokobaju_pemasukan,access.tokobaju.pemasukan,model_tokobaju_pemasukan,,1,1,1,1
+access_tokobaju_pemasukan_detail,access.tokobaju.pemasukan_detail,model_tokobaju_pemasukan_detail,,1,1,1,1
+access_tokobaju_supplier,access.tokobaju.supplier,model_tokobaju_supplier,,1,1,1,1
+access_tokobaju_transaksi,access.tokobaju.transaksi,model_tokobaju_transaksi,,1,1,1,1
+access_tokobaju_transaksi_detail,access.tokobaju.transaksi_detail,model_tokobaju_transaksi_detail,,1,1,1,1

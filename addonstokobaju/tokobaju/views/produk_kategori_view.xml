@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- tokobaju.produk_kategori tree view -->
+    <record id="tokobaju_produk_kategori_view_tree" model="ir.ui.view">
+        <field name="name">tokobaju.produk_kategori.view.tree</field>
+        <field name="model">tokobaju.produk_kategori</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="kategori" />
+                <field name="keterangan" />
+                <field name="foto" widget="image" width="75" height="75" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- tokobaju.produk_kategori form view -->
+    <record id="tokobaju_produk_kategori_view_form" model="ir.ui.view">
+        <field name="name">tokobaju.produk_kategori.view.form</field>
+        <field name="model">tokobaju.produk_kategori</field>
+        <field name="arch" type="xml">
+            <form string="Produk Kategori">
+                <sheet>
+                    <group>
+                        <field name="kategori" />
+                        <field name="keterangan" />
+                        <field name="foto" widget="image" width="75" height="75" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tokobaju.produk_kategori action window -->
+    <record id="tokobaju_produk_kategori_action" model="ir.actions.act_window">
+        <field name="name">Produk Kategori</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tokobaju.produk_kategori</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="tokobaju_produk_kategori_menu_act" name="Produk Kategori" parent="tokobaju_barang_menu_categ" action="tokobaju_produk_kategori_action" sequence="20" />
+</odoo>

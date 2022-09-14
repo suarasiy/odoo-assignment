@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- tokobaju.produk tree view -->
+    <record id="tokobaju_produk_view_tree" model="ir.ui.view">
+        <field name="name">tokobaju.produk.view.tree</field>
+        <field name="model">tokobaju.produk</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="produk" decoration-bf="1" decoration-danger="tersedia==False" />
+                <field name="kategori_produk_id" decoration-info="1" />
+                <field name="foto" widget="image" width="75" height="75" />
+                <field name="stok" />
+                <field name="warna" widget="color" />
+                <field name="tersedia" />
+                <field name="barcode" widget="badge" />
+                <field name="terjual" widget="progressbar" options="{'max_value': 'stok'}" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- tokobaju.produk form view -->
+    <record id="model_name_view_form" model="ir.ui.view">
+        <field name="name">tokobaju.produk.view.form</field>
+        <field name="model">tokobaju.produk</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="produk" />
+                        <field name="kategori_produk_id" />
+                        <field name="foto" widget="image" width="75" height="75" />
+                        <field name="stok" />
+                        <field name="warna" widget="color" />
+                        <field name="tersedia" widget="boolean_toggle" />
+                        <field name="barcode" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tokobaju.produk action window -->
+    <record id="tokobaju_produk_action" model="ir.actions.act_window">
+        <field name="name">Produk</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tokobaju.produk</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="tokobaju_produk_menu_act" name="Produk" parent="tokobaju_barang_menu_categ" action="tokobaju_produk_action" sequence="10" />
+</odoo>

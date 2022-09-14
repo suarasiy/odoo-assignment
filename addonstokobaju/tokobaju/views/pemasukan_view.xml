@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- tokobaju.pemasukan tree view -->
+    <record id="tokobaju_pemasukan_view_tree" model="ir.ui.view">
+        <field name="name">tokobaju.pemasukan.view.tree</field>
+        <field name="model">tokobaju.pemasukan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="supplier_id" />
+                <field name="pemasukan_detail_ids" />
+                <field name="total_harga" />
+                <field name="state" widget="badge" decoration-bf="state=='menunggu_konfirmasi'" decoration-success="state=='selesai'" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- tokobaju.pemasukan form view -->
+    <record id="tokobaju_pemasukan_view_form" model="ir.ui.view">
+        <field name="name">tokobaju.pemasukan.view.form</field>
+        <field name="model">tokobaju.pemasukan</field>
+        <field name="arch" type="xml">
+            <form string="Pemasukan">
+                <header>
+                    <button name="action_selesai" type="object" string="Konfirmasi" states="menunggu_konfirmasi" class="btn btn-primary" confirm="Stok akan bertambah jika selesai proses." />
+                    <field name="state" widget="statusbar" statusbar_visible="menunggu_konfirmasi,selesai" />
+                </header>
+                <sheet>
+                    <group string="Informasi Supplier">
+                        <field name="name" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                        <field name="supplier_id" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                        <field name="total_harga" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                    </group>
+                    <group string="Daftar Pemasukan Pakaian">
+                        <field name="pemasukan_detail_ids" attrs="{'readonly': [('state', '=', 'selesai')]}">
+                            <tree editable="bottom">
+                                <field name="produk" />
+                                <field name="harga" />
+                                <field name="qty" />
+                                <field name="subtotal" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tokobaju.pemasukan action window -->
+    <record id="tokobaju_pemasukan_action" model="ir.actions.act_window">
+        <field name="name">Pemasukan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tokobaju.pemasukan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="tokobaju_pemasukan_menu_act" name="Pemasukan" parent="tokobaju_pemasukan_menu_categ" action="tokobaju_pemasukan_action" sequence="10" />
+</odoo>

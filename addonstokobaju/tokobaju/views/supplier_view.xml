@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- tokobaju.supplier tree view -->
+    <record id="tokobaju_supplier_view_tree" model="ir.ui.view">
+        <field name="name">tokobaju.supplier.view.tree</field>
+        <field name="model">tokobaju.supplier</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="alamat" />
+                <field name="no_telp" />
+                <field name="deskripsi" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- tokobaju.supplier form view -->
+    <record id="tokobaju_supplier_view_form" model="ir.ui.view">
+        <field name="name">tokobaju.supplier.view.form</field>
+        <field name="model">tokobaju.supplier</field>
+        <field name="arch" type="xml">
+            <form string="Supplier">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="alamat" />
+                        <field name="no_telp" />
+                        <field name="deskripsi" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tokobaju.supplier action window -->
+    <record id="tokobaju_supplier_action" model="ir.actions.act_window">
+        <field name="name">tokobaju.supplier.action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tokobaju.supplier</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="tokobaju_supplier_menu_act" name="Supplier" parent="tokobaju_supplier_menu_categ" action="tokobaju_supplier_action" sequence="10" />
+</odoo>

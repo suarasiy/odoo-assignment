@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <menuitem id="tokobaju_menu_root" name="Toko Baju" sequence="10" />
+
+    <menuitem id="tokobaju_barang_menu_categ" name="Produk" parent="tokobaju_menu_root" sequence="10" />
+    <menuitem id="tokobaju_supplier_menu_categ" name="Supplier" parent="tokobaju_menu_root" sequence="20" />
+    <menuitem id="tokobaju_transaksi_menu_categ" name="Transaksi" parent="tokobaju_menu_root" sequence="30" />
+    <menuitem id="tokobaju_pemasukan_menu_categ" name="Pemasukan" parent="tokobaju_menu_root" sequence="40" />
+</odoo>
