@@ -52,6 +52,29 @@
         </field>
     </record>
 
+    <!-- tokobaju.transaksi search view -->
+    <record id="tokobaju_transaksi_view_search" model="ir.ui.view">
+        <field name="name">tokobaju.transaksi.view.search</field>
+        <field name="model">tokobaju.transaksi</field>
+        <field name="arch" type="xml">
+            <search string="Filter Transaksi">
+                <field name="nota" />
+                <field name="diskon" />
+                <field name="transaksi_detail_ids" />
+                <field name="total_harga" />
+                <field name="total_bayar" />
+                <field name="state" />
+                <filter name="filter_state_refund" string="Status Refund" domain="[('state', '=', 'refund')]" />
+                <filter name="filter_state_cancel" string="Status Cancel" domain="[('state', '=', 'cancel')]" />
+                <separator />
+                <group string="Group By">
+                    <filter name="gb_status" string="Status" context="{'group_by': 'state'}" />
+                    <filter name="gb_diskon" string="Diskon" context="{'group_by': 'diskon'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
     <!-- tokobaju.transaksi action window -->
     <record id="tokobaju_transaksi_action" model="ir.actions.act_window">
         <field name="name">Transaksi</field>

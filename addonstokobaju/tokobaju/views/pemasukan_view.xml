@@ -28,7 +28,7 @@
                 <sheet>
                     <group string="Informasi Supplier">
                         <field name="supplier_id" attrs="{'readonly': [('state', '=', 'selesai')]}" />
-                        <field name="total_harga" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                        <field name="total_harga" readonly="1" decoration-info="1" />
                     </group>
                     <group string="Daftar Pemasukan Pakaian">
                         <field name="pemasukan_detail_ids" attrs="{'readonly': [('state', '=', 'selesai')]}">
@@ -42,6 +42,28 @@
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <!-- tokobaju.pemasukan search view -->
+    <record id="tokobaju_pemasukan_view_search" model="ir.ui.view">
+        <field name="name">tokobaju.pemasukan.view.search</field>
+        <field name="model">tokobaju.pemasukan</field>
+        <field name="arch" type="xml">
+            <search string="Filter Pemasukan">
+                <field name="name" />
+                <field name="supplier_id" />
+                <field name="daftar_pemasukan" />
+                <field name="total_harga" />
+                <field name="state" />
+                <filter name="filter_state_mk" string="Status Menunggu Konfirmasi" domain="[('state', '=', 'menunggu_konfirmasi')]" />
+                <filter name="filter_state_selesai" string="Status Selesai" domain="[('state', '=', 'selesai')]" />
+                <separator />
+                <group string="Group By">
+                    <filter name="gb_status" string="Status" context="{'group_by': 'state'}" />
+                    <filter name="gb_supplier" string="Supplier" context="{'group_by': 'supplier_id'}" />
+                </group>
+            </search>
         </field>
     </record>
 

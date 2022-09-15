@@ -47,6 +47,35 @@
         </field>
     </record>
 
+    <!-- tokobaju.produk search view -->
+    <record id="tokobaju_produk_view_search" model="ir.ui.view">
+        <field name="name">tokobaju.produk.view.search</field>
+        <field name="model">tokobaju.produk</field>
+        <field name="arch" type="xml">
+            <search string="Filter Produk">
+                <field name="produk" decoration-bf="1" decoration-danger="tersedia==False" />
+                <field name="kategori_produk_id" decoration-info="1" />
+                <field name="foto" widget="image" width="75" height="75" />
+                <field name="harga" />
+                <field name="stok" />
+                <field name="warna" widget="color" />
+                <field name="target_penjualan" invisible="1" />
+                <field name="ukuran" widget="badge" />
+                <field name="tersedia" />
+                <field name="barcode" widget="badge" />
+                <field name="terjual" widget="progressbar" options="{'max_value': 'target_penjualan'}" />
+                <filter name="filter_tersedia" string="Produk Tersedia" domain="[('tersedia', '=', True)]" />
+                <filter name="filter_tidak_tersedia" string="Produk Tidak Tersedia" domain="[('tersedia', '=', False)]" />
+                <separator />
+                <group string="Group By">
+                    <filter name="gb_tersedia" string="Ketersediaan" context="{'group_by': 'tersedia'}" />
+                    <filter name="gb_ukuran" string="Ukuran" context="{'group_by': 'ukuran'}" />
+                    <filter name="gb_kategori" string="Kategori" context="{'group_by': 'kategori_produk_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
     <!-- tokobaju.produk action window -->
     <record id="tokobaju_produk_action" model="ir.actions.act_window">
         <field name="name">Produk</field>

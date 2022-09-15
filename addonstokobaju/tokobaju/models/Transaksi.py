@@ -60,6 +60,11 @@ class Transaksi(models.Model):
                 rec.produk_id.stok += rec.qty
         return super(Transaksi, self).write(values)
 
+    def unlink(self):
+        if self.filtered(lambda x: x.state == 'selesai' or x.state == 'refund' or x.state == 'menunggu_konfirmasi'):
+            raise ValidationError('Tidak dapat menghapus record.')
+        return super().unlink()
+
 
 class TransaksiDetail(models.Model):
     _name = 'tokobaju.transaksi_detail'

@@ -26,7 +26,8 @@ class Pemasukan(models.Model):
 
     @api.depends('pemasukan_detail_ids')
     def _compute_total_harga(self):
-        self.total_harga = sum(self.pemasukan_detail_ids.mapped('subtotal'))
+        for rec in self:
+            rec.total_harga = sum(rec.pemasukan_detail_ids.mapped('subtotal'))
 
     @api.depends('pemasukan_detail_ids')
     def action_selesai(self):
