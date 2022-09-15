@@ -6,11 +6,15 @@ import io
 class ProdukReportXlsx(models.AbstractModel):
     _name = 'report.tokobaju.report_produk'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'New Description'
 
     def generate_xlsx_report(self, workbook, data, products):
         row = 2
         col = 1
         bold = workbook.add_format({'bold': True})
+        bold.set_border()
+        cs = workbook.add_format()
+        cs.set_border()
         sheet = workbook.add_worksheet('Report Produk')
         sheet.merge_range(0, 0, 0, 9, "Report Produk", bold)
         sheet.write(1, 0, "s-img", bold)
@@ -40,23 +44,23 @@ class ProdukReportXlsx(models.AbstractModel):
                 produk_image = io.BytesIO(base64.b64decode(report.foto))
                 sheet.insert_image(row, 0, "img.png", {
                                    'image_data': produk_image, 'x_scale': 0.030, 'y_scale': 0.030})
-            sheet.write(row, col, report.produk)
+            sheet.write(row, col, report.produk, cs)
             col += 1
-            sheet.write(row, col, report.kategori_produk_id.kategori)
+            sheet.write(row, col, report.kategori_produk_id.kategori, cs)
             col += 1
-            sheet.write(row, col, report.harga)
+            sheet.write(row, col, report.harga, cs)
             col += 1
-            sheet.write(row, col, report.stok)
+            sheet.write(row, col, report.stok, cs)
             col += 1
-            sheet.write(row, col, report.warna)
+            sheet.write(row, col, report.warna, cs)
             col += 1
-            sheet.write(row, col, report.ukuran.upper())
+            sheet.write(row, col, report.ukuran.upper(), cs)
             col += 1
-            sheet.write(row, col, report.tersedia)
+            sheet.write(row, col, report.tersedia, cs)
             col += 1
-            sheet.write(row, col, report.barcode)
+            sheet.write(row, col, report.barcode, cs)
             col += 1
             sheet.write(
-                row, col, f"{report.terjual} / {report.target_penjualan}")
+                row, col, f"{report.terjual} / {report.target_penjualan}", cs)
             col = 1
             row += 1

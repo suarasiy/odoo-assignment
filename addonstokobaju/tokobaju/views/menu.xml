@@ -6,4 +6,5 @@
     <menuitem id="tokobaju_supplier_menu_categ" name="Supplier" parent="tokobaju_menu_root" sequence="20" />
     <menuitem id="tokobaju_transaksi_menu_categ" name="Transaksi" parent="tokobaju_menu_root" sequence="30" />
     <menuitem id="tokobaju_pemasukan_menu_categ" name="Pemasukan" parent="tokobaju_menu_root" sequence="40" />
+    <menuitem id="tokobaju_customer_menu_categ" name="Customer" parent="tokobaju_menu_root" sequence="50" />
 </odoo>

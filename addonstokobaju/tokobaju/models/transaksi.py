@@ -14,9 +14,11 @@ class Transaksi(models.Model):
         comodel_name='tokobaju.transaksi_detail', inverse_name='transaksi_id', string='Transaksi Detail')
     total_harga = fields.Integer(
         string='Total Harga', compute="_compute_total_harga")
-    total_bayar = fields.Integer(string='Total Bayar')
+    total_bayar = fields.Integer(string='Total Bayar', required=True)
     state = fields.Selection(string='Status', selection=[('menunggu_konfirmasi', 'Menunggu Konfirmasi'), (
         'selesai', 'Selesai'), ('cancel', 'Cancel'), ('refund', 'Produk Refund')], default="menunggu_konfirmasi", readonly=True)
+    customer_id = fields.Many2one(
+        comodel_name='res.partner', string='Customer', domain=[('is_customer', '=', True)], required=True)
 
     def _compute_nota(self):
         for rec in self:

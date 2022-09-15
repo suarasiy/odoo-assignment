@@ -9,6 +9,7 @@
                 <field name="nota" />
                 <field name="diskon" />
                 <field name="transaksi_detail_ids" />
+                <field name="customer_id" widget="many2one_avatar" />
                 <field name="total_harga" />
                 <field name="total_bayar" />
                 <field name="state" widget="badge" decoration-danger="state=='cancel'" decoration-success="state=='selesai'" decoration-warning="state=='refund'" decoration-info="state=='menunggu_konfirmasi'"></field>
@@ -43,6 +44,7 @@
                         </field>
                     </group>
                     <group string="Produk Tagihan">
+                        <field name="customer_id" attrs="{'readonly': [('state', '=', 'selesai'), ('state', '=', 'refund'), ('state', '=', 'cancel')]}" />
                         <field name="diskon" widget="discount" attrs="{'readonly': [('state', '=', 'selesai'), ('state', '=', 'refund'), ('state', '=', 'cancel')]}" />
                         <field name="total_harga" decoration-bf="1" decoration-info="1" />
                         <field name="total_bayar" attrs="{'readonly': [('state', '=', 'selesai'), ('state', '=', 'refund'), ('state', '=', 'cancel')]}" />

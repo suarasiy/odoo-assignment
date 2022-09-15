@@ -6,6 +6,7 @@ import io
 class PemasukanReportXlsx(models.AbstractModel):
     _name = 'report.tokobaju.report_pemasukan'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'New Description'
 
     def generate_xlsx_report(self, workbook, data, pemasukans):
         row = 2

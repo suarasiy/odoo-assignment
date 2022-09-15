@@ -33,7 +33,8 @@
         'views/pemasukan_view.xml',
         'views/supplier_view.xml',
         'views/transaksi_view.xml',
-        'report/report.xml'
+        'report/report.xml',
+        'views/customer_view.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -6,6 +6,7 @@ import io
 class TransaksiReportXlsx(models.AbstractModel):
     _name = 'report.tokobaju.report_transaksi'
     _inherit = 'report.report_xlsx.abstract'
+    _description = 'New Description'
 
     def generate_xlsx_report(self, workbook, data, transaksis):
         row = 2
@@ -13,6 +14,9 @@ class TransaksiReportXlsx(models.AbstractModel):
         bold = workbook.add_format()
         bold.set_bold()
         bold.set_border()
+        cs_customer = workbook.add_format()
+        cs_customer.set_border()
+        cs_customer.set_align('vcenter')
         cs = workbook.add_format()
         cs.set_border()
         cs_int = workbook.add_format()
@@ -54,16 +58,18 @@ class TransaksiReportXlsx(models.AbstractModel):
         sheet.write(1, 0, "Nota", bold)
         sheet.write(1, 1, "Diskon", bold)
         sheet.write(1, 2, "Produk Terjual", bold)
-        sheet.write(1, 3, "Total Harga", bold)
-        sheet.write(1, 4, "Total Bayar", bold)
-        sheet.write(1, 5, "Status", bold)
+        sheet.write(1, 3, "Customer", bold)
+        sheet.write(1, 4, "Total Harga", bold)
+        sheet.write(1, 5, "Total Bayar", bold)
+        sheet.write(1, 6, "Status", bold)
 
         sheet.set_column('A:A', 18)
         sheet.set_column('B:B', 10)
         sheet.set_column('C:C', 35)
-        sheet.set_column('D:D', 13)
-        sheet.set_column('E:E', 15)
-        sheet.set_column('F:F', 30)
+        sheet.set_column('D:D', 25)
+        sheet.set_column('E:E', 13)
+        sheet.set_column('F:F', 15)
+        sheet.set_column('G:G', 30)
 
         for report in transaksis:
             if len(report.transaksi_detail_ids) > 1:
@@ -75,9 +81,9 @@ class TransaksiReportXlsx(models.AbstractModel):
             col += 1
             if len(report.transaksi_detail_ids) > 1:
                 sheet.merge_range(
-                    row, col, row+len(report.transaksi_detail_ids)-1, col, report.diskon, cs_diskon)
+                    row, col, row+len(report.transaksi_detail_ids)-1, col, f"{report.diskon}%", cs_diskon)
             else:
-                sheet.write(row, col, report.diskon, cs_diskon)
+                sheet.write(row, col, f"{report.diskon}%", cs_diskon)
 
             col += 1
             for x in report.transaksi_detail_ids:
@@ -85,6 +91,13 @@ class TransaksiReportXlsx(models.AbstractModel):
                 row += 1
             col += 1
             row -= len(report.transaksi_detail_ids)
+            if len(report.transaksi_detail_ids) > 1:
+                sheet.merge_range(
+                    row, col, row+len(report.transaksi_detail_ids)-1, col, report.customer_id.name, cs_customer)
+            else:
+                sheet.write(row, col, report.customer_id.name, cs_customer)
+
+            col += 1
             if len(report.transaksi_detail_ids) > 1:
                 sheet.merge_range(
                     row, col, row+len(report.transaksi_detail_ids)-1, col, report.total_harga, cs_int)

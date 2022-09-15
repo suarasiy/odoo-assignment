@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import Produk, Pemasukan, Supplier, Transaksi
+from . import pemasukan, produk, supplier, transaksi, customer
