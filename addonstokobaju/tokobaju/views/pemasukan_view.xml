@@ -11,6 +11,7 @@
                 <field name="daftar_pemasukan" decoration-info="1" />
                 <field name="total_harga" />
                 <field name="state" widget="badge" decoration-bf="state=='menunggu_konfirmasi'" decoration-success="state=='selesai'" />
+                <button name="action_selesai" type="object" string="Konfirmasi" states="menunggu_konfirmasi" class="btn btn-primary" confirm="Stok akan bertambah jika selesai proses." />
             </tree>
         </field>
     </record>

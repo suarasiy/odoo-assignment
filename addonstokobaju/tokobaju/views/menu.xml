@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <menuitem id="tokobaju_menu_root" name="Toko Baju" sequence="10" />
+    <menuitem id="tokobaju_menu_root" name="Terminal Clothes Indra" sequence="10" />
 
     <menuitem id="tokobaju_barang_menu_categ" name="Produk" parent="tokobaju_menu_root" sequence="10" />
     <menuitem id="tokobaju_supplier_menu_categ" name="Supplier" parent="tokobaju_menu_root" sequence="20" />

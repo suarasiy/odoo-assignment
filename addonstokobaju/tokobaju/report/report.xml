@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="report_produk_xlsx" model="ir.actions.report">
+        <field name="name">Produk Excel</field>
+        <field name="model">tokobaju.produk</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">tokobaju.report_produk</field>
+        <field name="report_file">tokobaju.report_produk</field>
+        <field name="binding_model_id" ref="model_tokobaju_produk" />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="report_pemasukan_xlsx" model="ir.actions.report">
+        <field name="name">Pemasukan Excel</field>
+        <field name="model">tokobaju.pemasukan</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">tokobaju.report_pemasukan</field>
+        <field name="report_file">tokobaju.report_pemasukan</field>
+        <field name="binding_model_id" ref="model_tokobaju_pemasukan" />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="report_transaksi_xlsx" model="ir.actions.report">
+        <field name="name">Transaksi Excel</field>
+        <field name="model">tokobaju.transaksi</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">tokobaju.report_transaksi</field>
+        <field name="report_file">tokobaju.report_transaksi</field>
+        <field name="binding_model_id" ref="model_tokobaju_transaksi" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -15,6 +15,9 @@ class Pemasukan(models.Model):
         comodel_name='tokobaju.pemasukan_detail', inverse_name='pemasukan_id', string='Pemasukan Detail')
     daftar_pemasukan = fields.Char(
         string='Daftar Pemasukan', compute="_compute_daftar_pemasukan")
+    daftar_pemasukan_lengkap = fields.Char(
+        string='Daftar Pemasukan Lengkap', compute="_compute_daftar_pemasukan_lengkap")
+
     total_harga = fields.Integer(
         string='Total Harga', compute="_compute_total_harga")
     state = fields.Selection(string='Status', selection=[(
@@ -45,6 +48,11 @@ class Pemasukan(models.Model):
                 rec.daftar_pemasukan = f"{_}...(+{len(result)-3})"
             else:
                 rec.daftar_pemasukan = ", ".join(result)
+
+    def _compute_daftar_pemasukan_lengkap(self):
+        for rec in self:
+            rec.daftar_pemasukan_lengkap = rec.pemasukan_detail_ids.search(
+                [('pemasukan_id', '=', rec.id)]).mapped('produk.produk')
 
     def unlink(self):
         if self.filtered(lambda x: x.state == 'selesai'):
